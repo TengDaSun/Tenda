@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo</title>
+</head>
+<body>
+    <div class="todo-app">
+        <div class="todo-title">李星星 の todo list</div>
+
+        <div class="todo-form">
+            <input class="todo-input" type="text" placeholder="add todo">
+            <div class="todo-button">确认</div>
+            <!-- <button>123</button> -->
+        </div>
+
+        <div class="item completed">
+            <input type="checkbox">
+            <div class="name">喝茶</div>
+            <div class="del">del</div>
+        </div>
+
+        <div class="item">
+            <input type="checkbox">
+            <div class="name">锻炼</div>
+            <div class="del">del</div>
+        </div>
+
+        <div class="item">
+            <input type="checkbox">
+            <div class="name">吃饭</div>
+            <div class="del">del</div>
+        </div>
+
+
+
+    </div>
+
+  
+
+
+
+
+
+
+
+    <style>
+
+        /* 设置 body 元素的背景为从左到右的渐变色 */
+       body {
+            /* 使用更为接近的颜色和更大的颜色停顿区域，使渐变过渡更慢 */
+            background: linear-gradient(to right, #ffb6c1 10%, #ff99cc 50%, #87cefa 90%);
+            height: 100vh;
+            margin: 0;
+        }
+
+        .todo-app {
+            width: 98%;               /* 宽度为 98% */
+            height: 500px;            /* 高度为 500px */
+            background-color: white; /* 背景色为白色 */
+            margin: 50px auto 0; /* 距离上边距 10px，左右居中，底部不设定 */
+            padding: 30px;            /* 增加内边距，给内容更多空间 */
+            box-sizing: border-box;  /* 包括内边距和边框在内的宽度和高度计算 */
+            border-radius: 15px;      /* 设置圆角，使外观更加柔和 */
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* 添加更精致的阴影 */
+            background: linear-gradient(145deg, #ffffff, #f2f2f2); /* 渐变背景 */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* 增加平滑过渡效果 */
+        }
+
+         /* 鼠标悬停时的效果 */
+         .todo-app:hover {
+            transform: translateY(-5px); /* 悬停时，向上移动 */
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2); /* 增加阴影，产生浮动效果 */
+        }
+
+         /* .todo-title 的样式 */
+         .todo-title {
+            text-align: center;            /* 居中标题 */
+            font-size: 2.5rem;             /* 字体大小 */
+            font-weight: bold;             /* 字体加粗 */
+            color: #f29d09;                   /* 深灰色字体 */
+            margin-bottom: 20px;           /* 设置底部间距 */
+            letter-spacing: 2px;           /* 字母间距稍微增加，增加美感 */
+            font-family: 'Arial', sans-serif; /* 设置字体 */
+        }
+
+        /* .todo-form 设置样式 */
+        .todo-form {
+            display: flex;
+            align-items: center;
+            /* gap: 10px;  设置输入框与按钮之间的间距 */
+        }
+
+        /* input 样式 */
+        .todo-form input[type="text"] {
+            width: 100%;              /* 宽度占满容器 */
+            padding: 12px 15px;       /* 内边距 */
+            font-size: 1rem;          /* 字体大小 */
+            border: 1px solid #ddd;   /* 边框 */
+            border-radius: 8px;       /* 圆角 */
+            outline: none;            /* 去掉默认的焦点外框 */
+            transition: border-color 0.3s ease; /* 边框颜色过渡 */
+            box-sizing: border-box;   /* 包括内边距和边框在内的宽度和高度计算 */
+        }
+
+        /* 输入框获取焦点时 */
+        .todo-form input[type="text"]:focus {
+            border-color: #7fb9f8; /* 聚焦时改变边框颜色 */
+        }   
+
+        /* .todo-button 样式 */
+        .todo-button {
+            background-color: #7fb5ef; /* 背景色为蓝色 */
+            color: white;              /* 文本颜色为白色 */
+            width: 60px;               /* 设置按钮的宽度 */
+            height: 45px;              /* 设置按钮的高度 */
+            border-radius: 8px;        /* 圆角 */
+            display: flex;
+            justify-content: center;   /* 居中文本 */
+            align-items: center;       /* 居中文本 */
+            cursor: pointer;          /* 鼠标悬停时显示手型 */
+            transition: background-color 0.3s ease, transform 0.2s ease; /* 背景色和按钮大小过渡 */
+            user-select: none;
+        }
+
+        /* 鼠标悬停时按钮的效果 */
+        .todo-button:hover {
+            background-color: #0056b3; /* 改变背景色 */
+            transform: scale(1.05);     /* 稍微放大按钮 */
+        }
+
+        /* 鼠标按下时的效果 */
+        .todo-button:active {
+            transform: scale(1);       /* 按下按钮时恢复正常大小 */
+        }
+
+        /* .item 的容器样式 */
+        .item {
+            display: flex;               /* 使用 flexbox 布局 */
+            align-items: center;         /* 垂直居中对齐 */
+            background-color: white;     /* 背景色为白色 */
+            padding: 12px 20px;          /* 内边距 */
+            margin-bottom: 10px;         /* 下边距 */
+            margin-top: 20px;            /* 上边距，给与上方元素间距 */
+            border-radius: 8px;          /* 圆角 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+            transition: transform 0.2s ease; /* 鼠标悬停时平滑过渡 */
+            cursor: pointer;            /* 鼠标样式 */
+            gap: 15px;                   /* 元素间距 */
+        }
+
+        /* 鼠标悬停时增加效果 */
+        .item:hover {
+            transform: translateY(-5px); /* 鼠标悬停时，容器上移 */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* 增加阴影 */
+        }
+
+        /* 输入框 (checkbox) 样式 */
+        .item input[type="checkbox"] {
+            width: 20px;                 /* 设置宽度 */
+            height: 20px;                /* 设置高度 */
+            margin-right: 15px;          /* 和其他元素的间距 */
+            cursor: pointer;            /* 鼠标样式 */
+        }
+
+        /* 任务名称样式 */
+        .item .name {
+            flex: 1;                     /* 占据剩余空间 */
+            font-size: 1.2rem;           /* 字体大小 */
+            color: #333;                 /* 文字颜色 */
+            text-decoration: none;       /* 去掉默认的下划线 */
+            transition: color 0.3s ease; /* 文字颜色过渡效果 */
+        }
+
+        /* 任务名称：鼠标悬停时的效果 */
+        .item .name:hover {
+            color: #007bff;             /* 鼠标悬停时，文字变为蓝色 */
+            text-decoration: underline; /* 鼠标悬停时，文字带下划线 */
+        }
+
+        /* 删除按钮样式 */
+        .item .del {
+            color: #e74c3c;              /* 删除按钮颜色为红色 */
+            cursor: pointer;            /* 鼠标样式 */
+            font-size: 1rem;             /* 字体大小 */
+            transition: color 0.3s ease; /* 颜色过渡效果 */
+            user-select: none;
+        }
+
+        /* 删除按钮：鼠标悬停时的效果 */
+        .item .del:hover {
+            color: #c0392b;              /* 鼠标悬停时变深红色 */
+        }
+
+         /* 当 .completed 元素变为已完成时的效果 */
+         .completed {
+            opacity: 0.5; /* 设置半透明 */
+            text-decoration: line-through; /* 文字添加横线 */
+            color: #888; /* 设置文字颜色为灰色 */
+        }
+
+
+        
+    </style>
+</body>
+</html>
